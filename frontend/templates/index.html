@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control estadisticas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/solar/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1>Control de estad&iacute;sticas</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Cargar</span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="subirArchivo" accept=".xml">
+                      <label class="custom-file-label" for="inputGroupFile01">Selecciona tu archivo --></label>
+                    </div>
+                  </div> 
+            </div>
+            
+            <div class="col-md-5">
+                <button type="button" class="btn btn-primary">Peticiones</button>
+                <button type="button" class="btn btn-info">Ayuda</button>
+            </div>
+        </div>
+    
+        <hr style="border-color: white;">
+    
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary">Enviar</button>
+                <h3>Entrada</h3>
+                <textarea rows="18" cols="60" style="background-color:grey"></textarea>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-secondary">Reset</button>
+                <h3>Salida</h3>
+                <textarea rows="18" cols="60" style="background-color:grey"></textarea>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+
+</html>
