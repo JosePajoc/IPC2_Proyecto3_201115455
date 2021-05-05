@@ -4,6 +4,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+eventosXML = []                                             #Lista con eventos individuales
 
 @app.route('/inicio')
 def inicio():
@@ -11,7 +12,25 @@ def inicio():
 
 @app.route('/recibirXML', methods=['POST'])
 def recibirXML():
-    print(request.json['datos'])
+    global eventosXML
+    datosXML = request.json['datos']
+    print(request.json['datos'])                            #Mostrar datos del XML recibidos
+    print('-----------------------------------------------------------------------------')
+    datosXML = datosXML.replace('<EVENTOS>','')             #Quitar etiquetas
+    datosXML = datosXML.replace('</EVENTOS>','')
+    eventos = datosXML.split("</EVENTO")                    #Arreglo con split
+    #Quitando datos innecesarios
+    for eve in eventos:
+        eve = eve.replace('<EVENTO>', '')                   
+        eve = eve.replace('\n', '')
+        eve = eve.replace('\t', '')
+        eve = eve.replace('>', '')
+        eventosXML.append(eve)                              #Asignando a la lista de eventos individuales
+    eventosXML.pop(len(eventos) - 1)
+    #Mostrando los datos en consola
+    for eve in eventosXML:
+        print(eve)
+    #Respuesta para el frontend
     return jsonify({'datos recibidos en el backend': request.json['datos']})
 
 
