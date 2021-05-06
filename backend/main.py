@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+import procesoEvento
 
 app = Flask(__name__)
 CORS(app)
@@ -27,12 +28,10 @@ def recibirXML():
         eve = eve.replace('>', '')
         eventosXML.append(eve)                              #Asignando a la lista de eventos individuales
     eventosXML.pop(len(eventos) - 1)
-    #Mostrando los datos en consola
-    for eve in eventosXML:
-        print(eve)
     #Respuesta para el frontend
+    procesoEvento.recibirDatos(eventosXML)
+    eventosXML.clear()
     return jsonify({'datos recibidos en el backend': request.json['datos']})
-
 
 if __name__=='__main__':
     app.run(debug=True, port=5000)

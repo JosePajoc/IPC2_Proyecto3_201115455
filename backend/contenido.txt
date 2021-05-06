@@ -1,0 +1,17 @@
+Guatemala, 15/01/2021Reportado por: user1@ing.usac.edu.gtUsuarios afectados: user2@ing.usac.edu.gt, user3@ing.usac.edu.gtError: 20001 - Desbordamiento 
+de búfer de memoria RAMen el servidor de correo electrónico.
+
+Guatemala, 16/01/2021Reportado por: <user4@ing.usac.edu.gtUsuarios afectados: user1@ing.usac.edu.gt, <"usuario3" user3@ing.usac.edu.gtError: 10001 - Excepción en pila
+
+Guatemala, 17/01/2021Reportado por: <coordinador@ing.usac.edu.gtUsuarios afectados: user2@ing.usac.edu.gt, <user3@ing.usac.edu.gtError: 30001 - Servicio no encontrado
+
+Guatemala, 15/01/2021Reportado por: <user2@ing.usac.edu.gtUsuarios afectados: coordinador@ing.usac.edu.gt, user1@ing.usac.edu.gtError: 20001 - Desbordamiento de búfer de memoria RAMen el servidor de correo electrónico.
+
+Guatemala, 16/01/2021Reportado por: user1@ing.usac.edu.gtUsuarios afectados: user2@ing.usac.edu.gt, user4@ing.usac.edu.gt, <"coordinador" coordinador@ing.usac.edu.gtError: 30001 - Servicio no encontrado
+
+Guatemala, 16/01/2021Reportado por: user1@ing.edu.gtUsuarios afectados: user2@ing.usac.edu.gt, <user3@ing.usac.edu.gtError: 10001 - Excepción en pila  
+
+
+para fecha = Guatemala.+Reportado      Quitar Reportado
+para correos = \S+@\S+                  Quitar Error, el primer correo es quién Reportado
+para Errores = Error.+\S                Quitar inicio Error
