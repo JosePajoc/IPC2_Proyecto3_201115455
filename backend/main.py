@@ -5,7 +5,6 @@ import procesoEvento
 app = Flask(__name__)
 CORS(app)
 
-
 @app.route('/')
 def inicio():
     return jsonify({'mensaje': 'Servidor en ejecucion'})
@@ -25,14 +24,20 @@ def recibirXML():
 
 @app.route('/verDocumentacion', methods=['GET'])
 def verDocumentacion():
-    print('Si entro a documentación')
-    return jsonify({'mensaje': 'mostrando documentación, espere un momento'})
+    procesoEvento.verDocumentacion()
+    return jsonify({'mensaje': 'Espere un momento...'})
 
 @app.route('/reiniciarApp', methods=['GET'])
 def reiniciarApp():
     print('Se ha reiniciado la App')
     procesoEvento.reiniciar()
     return jsonify({'mensaje': 'Aplicación reiniciada...'})
+
+@app.route('/filtrar/<string:tipo>', methods=['GET'])
+def filtrarDatos(tipo):
+    print('Filtrado por ', tipo)
+    respuesta = procesoEvento.crearXML()
+    return jsonify({'mensaje':'dato ingreso con éxito', 'respuesta': respuesta})
 
 if __name__=='__main__':
     app.run(debug=True, port=5000)

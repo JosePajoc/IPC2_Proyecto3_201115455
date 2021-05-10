@@ -12,7 +12,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <!--Izquierda-->
                 <div class="input-group mb-3">
                     <div class="custom-file">
@@ -20,12 +20,11 @@
                       <label class="custom-file-label" for="inputGroupFile01">Selecciona tu archivo XML -- -- ></label>
                     </div>
                 </div> 
-                
+                <button type="button" onclick="ayuda()" class="btn btn-info">Ayuda</button>
             </div>
             <!--Derecha-->
             <div class="col-md-6">
-                <button type="button" class="btn btn-primary">Peticiones</button>
-                <button type="button" onclick="ayuda()" class="btn btn-info">Ayuda</button>
+                <h3>Peticiones</h3>
             </div>
         </div>
         
@@ -35,14 +34,21 @@
             <!--Izquierda-->
             <div class="col-md-6">
                 <button type="button" onclick="enviarXML()" id="btnEnviar" class="btn btn-primary" disabled>Enviar</button>
+                <button type="button" onclick="reiniciarApp()" class="btn btn-secondary">Reset</button>
                 <h3>Entrada</h3>
                 <textarea id="contenidoXML" rows="18" cols="60" style="background-color:lightslategray" disabled></textarea>
             </div>
             <!--Derecha-->
             <div class="col-md-6">
-                <button type="button" onclick="reiniciarApp()" class="btn btn-secondary">Reset</button>
+                <select onchange="habilitarFiltrar()" id="tipoFiltrado">
+                    <option>Seleccionar filtrado --></option>
+                    <option value="reportado">Usuario que reporta</option>
+                    <option value="error">Código de error</option>
+                </select>
+                <button type="button" id="btnFiltrar" onclick="filtrar()" class="btn btn-primary" disabled>Filtrar</button>
+                <button type="button" class="btn btn-primary">Consultar todos los datos</button>
                 <h3>Salida</h3>
-                <textarea rows="18" cols="60" style="background-color:lightslategray" disabled></textarea>
+                <textarea id="salidaXML" rows="18" cols="60" style="background-color:lightslategray" disabled></textarea>
             </div>
         </div>
     </div>
@@ -102,6 +108,31 @@
                 alert(response.mensaje)
                 location.href = "http://localhost:8000/inicio/";             //llamar a la view ayuda
             })  
+        }
+
+        function habilitarFiltrar(){
+            document.getElementById('btnFiltrar').disabled=false;           //Habilitar botón FILTRAR
+        }
+
+        function filtrar(){
+            var filtrarPor = document.getElementById('tipoFiltrado').value;
+            var tipo = '';
+            if (filtrarPor=='reportado'){
+                tipo = 'usuario'
+            }else{
+                tipo = 'error'
+            }
+            var url = 'http://localhost:5000/filtrar/' + tipo;
+            console.log(url)
+            fetch(url)
+            .then(res => res.json())
+            .catch(error => {
+                alert('Error al conectar con el servidor');
+            })
+            .then(response => {
+                alert('Procesando datos...')
+                document.getElementById('salidaXML').innerHTML = response.respuesta;
+            }) 
         }
     </script>
 

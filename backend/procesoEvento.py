@@ -1,5 +1,7 @@
-import re
+import re                                                              #Uso de expresiones regulares
 from eventos import evento                                             #Importando la clase eventos
+from io import open                                                    #Importando módulo para crear archivo plano
+import webbrowser
 
 listaEventos = []                                                      #Lista de objetos
 
@@ -27,3 +29,16 @@ def reiniciar():
     if len(listaEventos)>0:
         print('Lista vacía')
         listaEventos.clear()
+
+def crearXML():
+    salidaXML = open('salida.xml', 'w')
+    respuesta = '<ESTADISTICAS>\n'
+    salidaXML.write('<ESTADISTICAS>\n')
+
+    salidaXML.write('</ESTADISTICAS>')
+    respuesta = respuesta + '</ESTADISTICAS>'
+    salidaXML.close()
+    return respuesta
+
+def verDocumentacion():
+    webbrowser.open_new_tab('documentacion.pdf')
