@@ -3,3 +3,6 @@ from django.shortcuts import render                     #renderizado de plantill
 
 def inicio(request):
     return render(request, 'index.html', {})
+
+def ayuda(request):
+    return render(request, 'ayuda.html', {})

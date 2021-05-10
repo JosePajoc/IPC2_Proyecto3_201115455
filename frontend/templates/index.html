@@ -25,7 +25,7 @@
             <!--Derecha-->
             <div class="col-md-6">
                 <button type="button" class="btn btn-primary">Peticiones</button>
-                <button type="button" class="btn btn-info">Ayuda</button>
+                <button type="button" onclick="ayuda()" class="btn btn-info">Ayuda</button>
             </div>
         </div>
         
@@ -40,7 +40,7 @@
             </div>
             <!--Derecha-->
             <div class="col-md-6">
-                <button type="button" class="btn btn-secondary">Reset</button>
+                <button type="button" onclick="reiniciarApp()" class="btn btn-secondary">Reset</button>
                 <h3>Salida</h3>
                 <textarea rows="18" cols="60" style="background-color:lightslategray" disabled></textarea>
             </div>
@@ -83,7 +83,24 @@
                 alert('Error al conectar con el servidor');
             })
             .then(response => {
-                alert('Datos enviados con éxito al servidor');
+                alert('Enviando datos...');
+                alert(response.mensaje)
+            })  
+        }
+
+        function ayuda(){
+            location.href = "http://localhost:8000/ayuda/";             //llamar a la view ayuda
+        }
+
+        function reiniciarApp(){
+            fetch('http://localhost:5000/reiniciarApp')
+            .then(res => res.json())
+            .catch(error => {
+                alert('Error al conectar con el servidor');
+            })
+            .then(response => {
+                alert(response.mensaje)
+                location.href = "http://localhost:8000/inicio/";             //llamar a la view ayuda
             })  
         }
     </script>

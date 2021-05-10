@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/solar/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <!--Izquierda-->
+                <h2>Datos del estudiante</h2>
+                <b>Nombre: </b>Jos&eacute; Ernesto Pajoc Raymundo.  <br>
+                <b>Carn&eacute;: </b>201115455. <br>
+                <b>Curso: </b>Introudcci&oacute;n a la programaci&oacute; y computaci&oacute;n 1.
+            </div>
+            <!--Derecha-->
+            <div class="col-md-4">
+                <button type="button" onclick="documentacion()" class="btn btn-primary">Ver documentaci&oacute;n</button>
+                <button type="button" onclick="volver()" class="btn btn-primary">Volver</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function documentacion(){
+            fetch('http://localhost:5000/verDocumentacion')
+            .then(res => res.json())
+            .catch(error => {
+                alert('Error al conectar con el servidor');
+            })
+            .then(response => {
+                alert('Solicitud enviado con éxito al servidor');
+            })
+        }
+
+        function volver(){
+            location.href = "http://localhost:8000/inicio/";
+        }
+    </script>
+</body>
+</html>
